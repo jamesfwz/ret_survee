@@ -1,0 +1,1 @@
+class MultiChoiceQuestion < Question; end

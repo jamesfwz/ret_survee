@@ -1,0 +1,1 @@
+class OpenTextQuestion < Question; end
