@@ -11,15 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114062754) do
+ActiveRecord::Schema.define(version: 20151114070746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "choices", force: :cascade do |t|
+    t.string "title"
+  end
+
+  create_table "multi_choice_answers", force: :cascade do |t|
+    t.integer "choice_id"
+    t.integer "question_id"
+  end
+
+  add_index "multi_choice_answers", ["choice_id"], name: "index_multi_choice_answers_on_choice_id", using: :btree
+  add_index "multi_choice_answers", ["question_id"], name: "index_multi_choice_answers_on_question_id", using: :btree
+
+  create_table "open_text_answers", force: :cascade do |t|
+    t.text    "message"
+    t.integer "question_id"
+  end
+
+  add_index "open_text_answers", ["question_id"], name: "index_open_text_answers_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text   "content"
     t.string "type"
   end
+
+  create_table "scale_answers", force: :cascade do |t|
+    t.integer "answer"
+    t.integer "question_id"
+  end
+
+  add_index "scale_answers", ["question_id"], name: "index_scale_answers_on_question_id", using: :btree
 
 end
