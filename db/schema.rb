@@ -22,18 +22,18 @@ ActiveRecord::Schema.define(version: 20151114070746) do
 
   create_table "multi_choice_answers", force: :cascade do |t|
     t.integer "choice_id"
-    t.integer "question_id"
+    t.integer "multi_choice_question_id"
   end
 
   add_index "multi_choice_answers", ["choice_id"], name: "index_multi_choice_answers_on_choice_id", using: :btree
-  add_index "multi_choice_answers", ["question_id"], name: "index_multi_choice_answers_on_question_id", using: :btree
+  add_index "multi_choice_answers", ["multi_choice_question_id"], name: "index_multi_choice_answers_on_multi_choice_question_id", using: :btree
 
   create_table "open_text_answers", force: :cascade do |t|
     t.text    "message"
-    t.integer "question_id"
+    t.integer "open_text_question_id"
   end
 
-  add_index "open_text_answers", ["question_id"], name: "index_open_text_answers_on_question_id", using: :btree
+  add_index "open_text_answers", ["open_text_question_id"], name: "index_open_text_answers_on_open_text_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string "title"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20151114070746) do
 
   create_table "scale_answers", force: :cascade do |t|
     t.integer "answer"
-    t.integer "question_id"
+    t.integer "scale_question_id"
   end
 
-  add_index "scale_answers", ["question_id"], name: "index_scale_answers_on_question_id", using: :btree
+  add_index "scale_answers", ["scale_question_id"], name: "index_scale_answers_on_scale_question_id", using: :btree
 
 end
