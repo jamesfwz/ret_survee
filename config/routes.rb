@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :questions, only: [:show] do 
     member do 
-      get :results
+      get :result
     end
 
     resources :open_text_answers,     only: [:create]

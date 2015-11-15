@@ -4,6 +4,11 @@ class QuestionsController < ApplicationController
     render json: @question
   end
 
+  def result
+    @question = Question.find(question_id)
+    render json: @question.answers.result
+  end
+
   protected
 
   def question_id
