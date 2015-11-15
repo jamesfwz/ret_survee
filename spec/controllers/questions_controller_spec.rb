@@ -49,5 +49,20 @@ describe QuestionsController do
         expect(response.body).to eq expected
       end
     end
+
+    context 'scale' do
+      let!(:question)       { create(:scale_question) }
+      let!(:first_answer)   { create(:scale_answer, question: question, value: 40) }
+      let!(:second_answer)  { create(:scale_answer, question: question, value: 54) }
+      let!(:expected) { {
+        total: 2, 
+        average: "47.0"
+      }.to_json }
+
+      it 'returns average value' do 
+        do_request
+        expect(response.body).to eq expected
+      end
+    end
   end
 end
