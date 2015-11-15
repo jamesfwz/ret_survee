@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :device do
-    udid  SecureRandom.uuid 
+    sequence(:udid)   { |n| "#{SecureRandom.uuid}#{n}"}
   end
 end
