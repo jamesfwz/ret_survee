@@ -5,4 +5,8 @@ class OpenTextAnswer < ActiveRecord::Base
   validates :question_id, presence: true
   validates :device_id,   presence: true
   validates :message,     presence: true
+
+  def self.result
+    includes(:device)
+  end
 end

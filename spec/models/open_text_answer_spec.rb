@@ -11,4 +11,12 @@ describe OpenTextAnswer do
     it { is_expected.to belong_to :question }
     it { is_expected.to belong_to :device }
   end
+
+  describe '.result' do 
+    let!(:question) { create(:open_text_question, :with_2_answers) }
+
+    it 'returns a list of results' do 
+      expect(question.answers.result).to match question.answers
+    end
+  end
 end
