@@ -1,7 +1,9 @@
 class ScaleAnswer < ActiveRecord::Base
   belongs_to :question, class_name: ScaleQuestion
+  belongs_to :device
 
   validates :question_id, presence: true
+  validates :device_id,   presence: true
   validates :value,       presence: true, 
                           inclusion:  { 
                             in: 0..100, 

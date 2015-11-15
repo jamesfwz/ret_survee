@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115055059) do
+ActiveRecord::Schema.define(version: 20151115063205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,19 +20,27 @@ ActiveRecord::Schema.define(version: 20151115055059) do
     t.string "title"
   end
 
+  create_table "devices", force: :cascade do |t|
+    t.string "udid"
+  end
+
   create_table "multi_choice_answers", force: :cascade do |t|
     t.integer "choice_id"
     t.integer "question_id"
+    t.integer "device_id"
   end
 
   add_index "multi_choice_answers", ["choice_id"], name: "index_multi_choice_answers_on_choice_id", using: :btree
+  add_index "multi_choice_answers", ["device_id"], name: "index_multi_choice_answers_on_device_id", using: :btree
   add_index "multi_choice_answers", ["question_id"], name: "index_multi_choice_answers_on_question_id", using: :btree
 
   create_table "open_text_answers", force: :cascade do |t|
     t.text    "message"
     t.integer "question_id"
+    t.integer "device_id"
   end
 
+  add_index "open_text_answers", ["device_id"], name: "index_open_text_answers_on_device_id", using: :btree
   add_index "open_text_answers", ["question_id"], name: "index_open_text_answers_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
@@ -44,8 +52,10 @@ ActiveRecord::Schema.define(version: 20151115055059) do
   create_table "scale_answers", force: :cascade do |t|
     t.integer "value"
     t.integer "question_id"
+    t.integer "device_id"
   end
 
+  add_index "scale_answers", ["device_id"], name: "index_scale_answers_on_device_id", using: :btree
   add_index "scale_answers", ["question_id"], name: "index_scale_answers_on_question_id", using: :btree
 
 end
