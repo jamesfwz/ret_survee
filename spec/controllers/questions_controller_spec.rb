@@ -8,7 +8,7 @@ describe QuestionsController do
 
     context 'open text' do 
       let!(:question) { create(:open_text_question) }
-      let!(:expected) { { question: question }.to_json }
+      let!(:expected) { question.to_json }
 
       it 'assigns question' do 
         do_request
