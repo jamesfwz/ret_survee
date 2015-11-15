@@ -1,3 +1,5 @@
 class Choice < ActiveRecord::Base
-  validates :title, presence: true
+  belongs_to :question, class_name: MultiChoiceQuestion
+  validates :title,       presence: true
+  validates :question_id, presence: true
 end
