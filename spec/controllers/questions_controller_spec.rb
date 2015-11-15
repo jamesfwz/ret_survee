@@ -8,11 +8,11 @@ describe QuestionsController do
 
     context 'open text' do 
       let!(:question) { create(:open_text_question) }
+      let!(:expected) { { question: question }.to_json }
 
       it 'assigns question' do 
         do_request
-        api_response = JSON::parse(response.body)
-        expect(api_response['question']['id']).to eq question.id        
+        expect(response.body).to eq expected
       end
     end
   end
