@@ -1,0 +1,7 @@
+class ScaleAnswersController < AnswersController 
+  protected
+
+  def resource_params
+    params.require(:scale_answer).permit(:value)
+  end
+end
