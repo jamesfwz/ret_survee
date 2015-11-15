@@ -12,4 +12,20 @@ describe MultiChoiceAnswer do
     it { is_expected.to belong_to :choice }
     it { is_expected.to belong_to :device }
   end
+
+  describe '.result' do 
+    let!(:question) { create(:multi_choice_question) }
+    let!(:ruby)     { create(:choice, title: 'Ruby',    question: question) }
+    let!(:python)   { create(:choice, title: 'Python',  question: question) }
+    let!(:ruby_answer)   { create_list(:multi_choice_answer, 3, choice: ruby,   question: question) }
+    let!(:python_answer) { create_list(:multi_choice_answer, 2, choice: python, question: question) }
+
+    let!(:expected) { [
+      { 'Python': 0.4 },
+      { 'Ruby':   0.6 }
+    ] }
+    it 'returns result' do 
+      expect(question.answers.result).to match expected
+    end
+  end
 end
