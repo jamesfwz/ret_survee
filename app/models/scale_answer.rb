@@ -9,4 +9,8 @@ class ScaleAnswer < ActiveRecord::Base
                             in: 0..100, 
                             message: "The value must be between 0 and 100" 
                           }
+
+  def self.result
+    { total: all.size,  average: average(:value) }
+  end
 end

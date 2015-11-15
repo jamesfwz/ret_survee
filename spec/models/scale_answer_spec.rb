@@ -12,4 +12,18 @@ describe ScaleAnswer do
     it { is_expected.to belong_to :question }
     it { is_expected.to belong_to :device }
   end
+
+  describe '.result' do 
+    let!(:question)       { create(:scale_question) }
+    let!(:first_answer)   { create(:scale_answer, question: question, value: 40) }
+    let!(:second_answer)  { create(:scale_answer, question: question, value: 54) }
+    let!(:expected) { {
+      total: 2, 
+      average: 47
+    } }
+
+    it 'returns average value' do 
+      expect(question.answers.result).to eq expected
+    end
+  end
 end
