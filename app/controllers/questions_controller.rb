@@ -1,9 +1,7 @@
 class QuestionsController < ApplicationController
   def show
     @question = Question.find(question_id)
-    @json  = { 
-              question: @question
-             }
+    @json  = { question: @question }
     render :json => @json
   end
 

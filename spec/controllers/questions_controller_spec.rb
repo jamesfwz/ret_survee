@@ -9,9 +9,10 @@ describe QuestionsController do
     context 'open text' do 
       let!(:question) { create(:open_text_question) }
 
-      it 'assigns question and renders view :open_text_question' do 
+      it 'assigns question' do 
         do_request
-        expect(assigns(:question)).to match question
+        api_response = JSON::parse(response.body)
+        expect(api_response['question']['id']).to eq question.id        
       end
     end
   end
